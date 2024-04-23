@@ -1,3 +1,8 @@
+ci:
+  autoupdate_commit_msg: "chore: update pre-commit hooks"
+  autofix_commit_msg: "style: pre-commit fixes"
+  autoupdate_schedule: quarterly
+
 repos:
   - repo: https://github.com/adamchainz/blacken-docs
     rev: "1.16.0"
@@ -137,12 +142,24 @@ repos:
     rev: 0.7.1
     hooks:
       - id: nbstripout
+
   - repo: https://github.com/MarcoGorelli/auto-walrus
     rev: 0.3.3
     hooks:
       - id: auto-walrus
 
-  - repo: https://github.com/shssoichiro/oxipng
-    rev: v9.1.0
+  # uncomment locally if needed, currently needs rust version not available on pre-commit.ci
+  #  - repo: https://github.com/shssoichiro/oxipng
+  #    rev: v9.1.0
+  #    hooks:
+  #      - id: oxipng
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.4.1"
     hooks:
-      - id: oxipng
+      - id: ruff
+        types_or: [python, pyi, jupyter]
+        args: [--fix, --unsafe-fixes, --show-fixes]
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [python, pyi, jupyter]
