@@ -39,9 +39,9 @@ def create_amplitude():
         initial_state_mass=reaction.initial_state[-1].mass,
         final_state_masses={i: p.mass for i, p in reaction.final_state.items()},
     )
-    phsp_momenta = phsp_generator.generate(100_000, rng)
+    phsp_generator.generate(100_000, rng)
 
-    unfolded_expression = model.expression.doit()
+    model.expression.doit()
 
     return model, reaction
 
@@ -93,19 +93,6 @@ def test_wrapper_simple():
     data = helicity_transformer(data_momenta)
     data_frame = pd.DataFrame(data)
     phsp_frame = pd.DataFrame(phsp)
-    initial_parameters = {
-        R"C_{J/\psi(1S) \to {f_{0}(1500)}_{0} \gamma_{+1}; f_{0}(1500) \to \pi^{0}_{0} \pi^{0}_{0}}": (
-            1.0
-        ),
-        "m_{f_{0}(500)}": 0.4,
-        "m_{f_{0}(980)}": 0.88,
-        "m_{f_{0}(1370)}": 1.22,
-        "m_{f_{0}(1500)}": 1.45,
-        "m_{f_{0}(1710)}": 1.83,
-        R"\Gamma_{f_{0}(500)}": 0.3,
-        R"\Gamma_{f_{0}(980)}": 0.1,
-        R"\Gamma_{f_{0}(1710)}": 0.3,
-    }
 
     # data conversion
     # phsp_zfit = zfit.Data.from_pandas(phsp_frame)

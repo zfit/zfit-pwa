@@ -51,9 +51,7 @@ class ComPWAPDF(zfit.pdf.BasePDF):
 
     @z.function(wraps="tensorwaves")
     def _jitted_unnormalized_pdf(self, data):
-        unnormalized_pdf = self.intensity(data)
-
-        return unnormalized_pdf
+        return self.intensity(data)
 
     @z.function(wraps="tensorwaves")
     def _jitted_normalization(self, norm_sample):
