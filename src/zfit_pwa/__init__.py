@@ -1,5 +1,4 @@
-"""
-Copyright (c) 2024 Jonas Eschle. All rights reserved.
+"""Copyright (c) 2024 Jonas Eschle. All rights reserved.
 
 zfit-pwa: Tools to adapt to Partial Wave Analysis packages
 """

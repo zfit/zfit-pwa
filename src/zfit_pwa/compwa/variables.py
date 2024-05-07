@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Mapping
+from collections.abc import Mapping
 
 import numpy as np
 import pandas as pd
@@ -19,8 +19,9 @@ def obs_from_frame(frame1, frame2=None, bufferfactor=0.01):
     if not isinstance(frame1, (Mapping, pd.DataFrame)) or not isinstance(
         frame2, (Mapping, pd.DataFrame)
     ):
+        msg = "frame1 and frame2 have to be either a mapping or a pandas DataFrame, or a zfit Data object. They are currently of type: "
         raise ValueError(
-            "frame1 and frame2 have to be either a mapping or a pandas DataFrame, or a zfit Data object. They are currently of type: ",
+            msg,
             type(frame1),
             type(frame2),
         )
@@ -38,5 +39,4 @@ def obs_from_frame(frame1, frame2=None, bufferfactor=0.01):
                 ),
             )
         )
-    obsall = zfit.dimension.combine_spaces(*obs)
-    return obsall
+    return zfit.dimension.combine_spaces(*obs)
