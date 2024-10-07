@@ -45,9 +45,8 @@ class ComPWAPDF(zfit.pdf.BasePDF):
 
         if norm is False:
             return unnormalized_pdf
-        else:
-            norm_sample = self.norm_sample | params
-            return unnormalized_pdf / self._jitted_normalization(norm_sample)
+        norm_sample = self.norm_sample | params
+        return unnormalized_pdf / self._jitted_normalization(norm_sample)
 
     @z.function(wraps="tensorwaves")
     def _jitted_unnormalized_pdf(self, data):
